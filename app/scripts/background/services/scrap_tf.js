@@ -17,10 +17,15 @@ Scraper.servives.ScrapTF = {
             }
         });
         chrome.runtime.sendMessage({event: 'log', message: (interestingBots.length + ' bots online')});
-        chrome.runtime.sendMessage({event: 'botsLoaded', bots: interestingBots, profit: event.profit});
+        event.bots = interestingBots;
+        event.event = 'botsLoaded';
+        chrome.runtime.sendMessage(event);
     },
 
     scrapeBank: function (event) {
+        var after = _.after(event.bots.length, function () {
+            chrome.runtime.sendMessage({event: 'loadDone'});
+        });
         shuffle(event.bots).forEach(function (bot) {
             var xmlHttp = new XMLHttpRequest(),
                 html,
@@ -45,7 +50,7 @@ Scraper.servives.ScrapTF = {
                             content = items[i].getAttribute('data-content'),
                             level = Number(content.match(/Level: (.*)\<br\/\>C/).pop()),
                             bankPrice = Number(content.match(/Costs: (.*)\ /).pop());
-                        if (level === 100) {
+                        if (!_.isNaN(level) && _.contains(event.levels, level)) {
                             chrome.runtime.sendMessage({event: 'foundItem', message: {
                                 name: name,
                                 profit: marketPrice - bankPrice,
@@ -84,7 +89,8 @@ Scraper.servives.ScrapTF = {
                             });
                         }
                     }
-                    console.log('Bot ' + bot.name + ' done.')
+                    after();
+                    console.log('Bot ' + bot.name + ' done.');
                 }
             };
             xmlHttp.onerror = function (error) {

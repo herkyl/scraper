@@ -11,27 +11,28 @@
     "background": {
         "scripts": [
             "scripts/chromereload.js",
+            "scripts/lib/lodash.min.js",
             "scripts/background/background.js",
             "scripts/background/services/backpack_tf.js",
             "scripts/background/services/scrap_tf.js",
             "scripts/background/router.js"
         ]
     },
-  "browser_action": {
-    "default_icon": {
-      "19": "images/icon-19.png",
-      "38": "images/icon-38.png"
+    "browser_action": {
+        "default_icon": {
+          "19": "images/icon-19.png",
+          "38": "images/icon-38.png"
     },
-    "default_title": "scraper",
-    "default_popup": "popup.html"
-  },
-  "permissions": [
-    "tabs",
-    "declarativeContent",
-    "storage",
-    "notifications",
-    "background",
-    "http://*/*",
-    "https://*/*"
-  ]
+    "default_title": "scraper"
+    },
+    "permissions": [
+        "tabs",
+        "declarativeContent",
+        "storage",
+        "notifications",
+        "background",
+        "http://*/*",
+        "https://*/*"
+    ],
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }

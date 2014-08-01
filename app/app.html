@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <link href="styles/main.css" rel="stylesheet">
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>Scraper</title>
+    </head>
+    <body>
+        <script type="text/template" id="item-template">
+            <div class="item">
+                <div class="main">
+                    <span class="level"></span>
+                    <%= name %>
+                    <span class="profit">&#8593; <%= profit.toFixed(2) %> ref</span>
+                </div>
+                <div class="secondary">
+                    <span>Bot: <%= bot %></span>
+                    <span>Backpack.tf price: <%= marketPrice %></span>
+                    <span>Scrap.tf price: <%= bankPrice %></span>
+                </div>
+            </div>
+        </script>
+        Minimum profit in refined: <input type="number" id="profit" value="0.6">
+        Levels to search for (separated with commas): <input type="text" id="levels" placeholder="1,69,100">
+        <input type="submit" value="Search" id="search">
+        <div class="spinner" style="display: none;">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+        <span id="hats"></span>
+        <span id="logs"></span>
+        <script src="scripts/lib/lodash.min.js"></script>
+        <script src="scripts/lib/jquery-2.1.1.min.js"></script>
+        <script src="scripts/app/app.js"></script>
+    </body>
+</html>

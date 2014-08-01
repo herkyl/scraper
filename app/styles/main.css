@@ -1,1 +1,91 @@
-body {}
+body, input {
+    font-family: "Helvetica Neue",Helvetica,Arial,Tahoma,sans-serif;
+    font-size: 10pt;
+    line-height: 20px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.item {
+    padding: 6px;
+    margin: 2px;
+    border-radius: 8px;
+    border: 3px solid #FFF;
+    font-weight: bold;
+}
+
+.item .level {
+    color: #9439B1;
+}
+
+.item .profit {
+    color: #43B139;
+}
+
+.item.quality-6 {
+    border-color: #FFD700;
+}
+
+.item.quality-11 {
+    border-color: #CF6A32;
+}
+
+.item .secondary span {
+    margin: 0 15px 0 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.spinner {
+    width: 40px;
+    height: 40px;
+
+    position: relative;
+}
+
+.double-bounce1, .double-bounce2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #333;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    -webkit-animation: bounce 2.0s infinite ease-in-out;
+    animation: bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+@-webkit-keyframes bounce {
+    0%, 100% { -webkit-transform: scale(0.0) }
+    50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    } 50% {
+          transform: scale(1.0);
+          -webkit-transform: scale(1.0);
+      }
+}

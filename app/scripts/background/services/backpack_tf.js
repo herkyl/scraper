@@ -7,7 +7,9 @@ Scraper.servives.BackpackTF = {
         if (reply.message) {
             chrome.runtime.sendMessage({event: 'log', message: reply.message});
             chrome.storage.local.get('prices', function(data) {
-                chrome.runtime.sendMessage({event: 'pricesLoaded', prices: data.prices, bots: event.bots, profit: event.profit});
+                event.prices = data.prices;
+                event.event = 'pricesLoaded';
+                chrome.runtime.sendMessage(event);
             });
         } else {
             var editedPrices = {};
@@ -28,7 +30,9 @@ Scraper.servives.BackpackTF = {
             }
             chrome.storage.local.set({prices: editedPrices}, function() {
                 chrome.runtime.sendMessage({event: 'log', message: 'Added prices to storage'});
-                chrome.runtime.sendMessage({event: 'pricesLoaded', prices: editedPrices, bots: event.bots, profit: event.profit});
+                event.prices = editedPrices;
+                event.event = 'pricesLoaded';
+                chrome.runtime.sendMessage(event);
             });
         }
     }
