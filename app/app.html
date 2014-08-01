@@ -20,15 +20,25 @@
                 </div>
             </div>
         </script>
+        <div class="disclaimer">You need to be logged into scrap.tf for this to work. If scrap.tf, scrap.tf's API or
+        backpack.tf's API are this wont work.</div>
+        <div class="disclaimer">This is not a union search. Two seperate searches will be made, one looking for
+        profit and another looking for levels. You can't (and should not need to) look for profit+level.</div>
+        <hr>
         Minimum profit in refined: <input type="number" id="profit" value="0.6">
+        <hr>
         Levels to search for (separated with commas): <input type="text" id="levels" placeholder="1,69,100">
+        <hr>
+        <input type="checkbox" value="2" checked>Hats<br>
+        <input type="checkbox" value="9">Stranges <span class="disclaimer">I recommend only searching for levels since scrap.tf uses bp.tf pricing for stranges and it's nearly impossible to make profit with them. (Set profit to 999 to avoid seeing the spam).</span>
+        <hr>
         <input type="submit" value="Search" id="search">
         <div class="spinner" style="display: none;">
             <div class="double-bounce1"></div>
             <div class="double-bounce2"></div>
         </div>
-        <span id="hats"></span>
         <span id="logs"></span>
+        <span id="hats"></span>
         <script src="scripts/lib/lodash.min.js"></script>
         <script src="scripts/lib/jquery-2.1.1.min.js"></script>
         <script src="scripts/app/app.js"></script>

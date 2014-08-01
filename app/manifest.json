@@ -13,6 +13,7 @@
             "scripts/chromereload.js",
             "scripts/lib/lodash.min.js",
             "scripts/background/background.js",
+            "scripts/background/_u.js",
             "scripts/background/services/backpack_tf.js",
             "scripts/background/services/scrap_tf.js",
             "scripts/background/router.js"

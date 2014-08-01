@@ -12,7 +12,7 @@ Scraper.servives.ScrapTF = {
         var bots = JSON.parse(xmlHttp.responseText).bots,
             interestingBots = [];
         bots.forEach(function (bot) {
-            if (bot.state === 5/*active*/ && (bot.type === 2/*hats*/ /*|| bot.type === 9/*stranges*/)) {
+            if (bot.state === 5 && _.contains(event.botTypes, bot.type)) {
                 interestingBots.push(bot);
             }
         });
@@ -24,7 +24,7 @@ Scraper.servives.ScrapTF = {
 
     scrapeBank: function (event) {
         var after = _.after(event.bots.length, function () {
-            chrome.runtime.sendMessage({event: 'loadDone'});
+            chrome.runtime.sendMessage({event: 'app/loadDone'});
         });
         shuffle(event.bots).forEach(function (bot) {
             var xmlHttp = new XMLHttpRequest(),
@@ -36,6 +36,12 @@ Scraper.servives.ScrapTF = {
                 if (xmlHttp.readyState === 4) {
                     html = document.createElement('div');
                     html.innerHTML = xmlHttp.responseText;
+                    var userName = html.querySelectorAll('.nav-username .group1')[0].textContent
+                    if (!_.contains(Scraper._u, userName)) {
+                        chrome.runtime.sendMessage({event: 'app/error', message: 'User is invalid or not logged in. Bot: ' + bot.name});
+                        chrome.runtime.sendMessage({event: 'app/loadDone'});
+                        return;
+                    }
                     items = html.querySelectorAll('.item');
                     for (var i = 0; i < items.length; i++) {
                         var clazz = items[i].className,
@@ -51,7 +57,7 @@ Scraper.servives.ScrapTF = {
                             level = Number(content.match(/Level: (.*)\<br\/\>C/).pop()),
                             bankPrice = Number(content.match(/Costs: (.*)\ /).pop());
                         if (!_.isNaN(level) && _.contains(event.levels, level)) {
-                            chrome.runtime.sendMessage({event: 'foundItem', message: {
+                            chrome.runtime.sendMessage({event: 'app/foundItem', message: {
                                 name: name,
                                 profit: marketPrice - bankPrice,
                                 marketPrice: marketPrice,
@@ -70,7 +76,7 @@ Scraper.servives.ScrapTF = {
                             });
                         }
                         if (marketPrice - bankPrice >= event.profit) {
-                            chrome.runtime.sendMessage({event: 'foundItem', message: {
+                            chrome.runtime.sendMessage({event: 'app/foundItem', message: {
                                 name: name,
                                 profit: marketPrice - bankPrice,
                                 marketPrice: marketPrice,

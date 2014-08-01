@@ -33,10 +33,20 @@ body, input {
     margin: 0 15px 0 0;
 }
 
+.disclaimer {
+    color: rgb(148, 148, 148);
+    font-style: italic;
+}
 
+hr {
+    border: 0;
+    border-bottom: 1px dashed #fff;
+    background: #C9C9C9;
+}
 
-
-
+.error {
+    color: red;
+}
 
 
 

@@ -16,7 +16,10 @@ function search() {
     chrome.runtime.sendMessage({
         event: 'loadBots',
         profit: Number(dom.profit.value),
-        levels: levels
+        levels: levels,
+        botTypes: $('input:checkbox:checked').map(function() {
+            return parseInt(this.value);
+        }).get()
     });
 }
 
@@ -32,10 +35,15 @@ function addItem(request) {
     $('#hats').append($item);
 }
 
+function addError(request) {
+    $('#logs').append('<div class="error item">' + request.message + '</div>');
+}
+
 
 var router = {
-    foundItem: addItem,
-    loadDone: function () {$('.spinner').hide();}
+    'app/foundItem': addItem,
+    'app/loadDone': function () {$('.spinner').hide();},
+    'app/error': addError
 };
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
