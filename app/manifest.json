@@ -27,12 +27,14 @@
     "default_title": "scraper"
     },
     "permissions": [
-        "tabs",
         "storage",
-        "notifications",
         "background",
-        "http://*/*",
-        "https://*/*"
+        //"http://*/*",
+        //"https://*/*"
+        "http://scrap.tf/*",
+        "https://scrap.tf/*",
+        "http://backpack.tf/api/*",
+        "https://backpack.tf/api/*"
     ],
     "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }
