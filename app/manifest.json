@@ -28,7 +28,6 @@
     },
     "permissions": [
         "tabs",
-        "declarativeContent",
         "storage",
         "notifications",
         "background",

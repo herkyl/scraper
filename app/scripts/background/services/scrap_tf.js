@@ -36,8 +36,13 @@ Scraper.servives.ScrapTF = {
                 if (xmlHttp.readyState === 4) {
                     html = document.createElement('div');
                     html.innerHTML = xmlHttp.responseText;
-                    var userName = html.querySelectorAll('.nav-username .group1')[0].textContent
-                    if (!_.contains(Scraper._u, userName)) {
+                    var userName;
+                    try {
+                        userName = html.querySelectorAll('.nav-username .group1')[0].textContent;
+                    } catch (error) {
+                        
+                    }
+                    if (!userName || !_.contains(Scraper._u, userName)) {
                         chrome.runtime.sendMessage({event: 'app/error', message: 'User is invalid or not logged in. Bot: ' + bot.name});
                         chrome.runtime.sendMessage({event: 'app/loadDone'});
                         return;
