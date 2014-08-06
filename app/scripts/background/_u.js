@@ -1,3 +1,4 @@
 Scraper._u = [
-    'STUNNING SEÑOR'
+    'STUNNING SEÑOR',
+    'Pew Pew'
 ]

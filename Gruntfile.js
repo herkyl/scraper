@@ -108,7 +108,7 @@ module.exports = function (grunt) {
             all: {
                 options: {
                     run: true,
-                    urls: ['http://localhost:<%= connect.options.port %>/index.html']
+                    urls: ['http://localhost:<%= connect.options.port %>/app.html']
                 }
             }
         },
@@ -116,7 +116,7 @@ module.exports = function (grunt) {
         // Automatically inject Bower components into the HTML file
         bowerInstall: {
             app: {
-                src: ['<%= config.app %>/index.html'],
+                src: ['<%= config.app %>/app.html'],
                 ignorePath: '<%= config.app %>/'
             }
         },
@@ -129,8 +129,7 @@ module.exports = function (grunt) {
                 dest: '<%= config.dist %>'
             },
             html: [
-                '<%= config.app %>/popup.html',
-                '<%= config.app %>/options.html'
+                '<%= config.app %>/app.html'
             ]
         },
 
@@ -295,7 +294,7 @@ module.exports = function (grunt) {
         'chromeManifest:dist',
         'useminPrepare',
         'concurrent:dist',
-        'cssmin',
+        //'cssmin',
         'concat',
         'uglify',
         'copy',

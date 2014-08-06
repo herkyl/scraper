@@ -42,7 +42,7 @@ Scraper.servives.ScrapTF = {
                     } catch (error) {
                         
                     }
-                    if (!userName || !_.contains(Scraper._u, userName)) {
+                    if (!userName || !_.filter(Scraper._u, function (n) {return userName.indexOf(n) > -1;})) {
                         chrome.runtime.sendMessage({event: 'app/error', message: 'User is invalid or not logged in. Bot: ' + bot.name});
                         chrome.runtime.sendMessage({event: 'app/loadDone'});
                         return;
