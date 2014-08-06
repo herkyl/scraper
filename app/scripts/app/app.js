@@ -9,10 +9,14 @@ $('#search').click(search);
 var levels;
 
 function search() {
+    if (Date.now() > 1407421366022) {
+        alert('Trial ended.');
+        return;
+    };
     $('.spinner').show();
     dom.logs.innerHTML = '';
     dom.hats.innerHTML = '';
-    levels = $('#levels').val().split(",").map(function(x){return parseInt(x)})
+    levels = $('#levels').val().split(",").map(function(x){return parseInt(x)});
     chrome.runtime.sendMessage({
         event: 'loadBots',
         profit: Number(dom.profit.value),
