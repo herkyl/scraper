@@ -9,10 +9,6 @@ $('#search').click(search);
 var levels;
 
 function search() {
-    if (Date.now() > 1407421366022) {
-        alert('Trial ended.');
-        return;
-    };
     $('.spinner').show();
     dom.logs.innerHTML = '';
     dom.hats.innerHTML = '';
