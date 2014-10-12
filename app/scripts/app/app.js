@@ -1,3 +1,4 @@
+
 var dom = {
     profit: document.getElementById('profit'),
     logs: document.getElementById('logs'),
