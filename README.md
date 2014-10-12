@@ -1,6 +1,7 @@
 # Scraper
 
-Scraper is a Chrome Extension that search for items on scrap.tf, use on your own risk
+Scraper is a Chrome Extension that search for items on scrap.tf, use on your own risk.
+Kudos to anyone willing to clean up the code. It was just for myself at first but I released it as open source due to public demand.
 
 ## Loading the extension into Chrome
 (from https://developer.chrome.com/extensions/getstarted#unpacked)
